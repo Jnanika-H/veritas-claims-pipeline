@@ -180,8 +180,6 @@ python -m pytest tests/ -v
 
 ---
 
-## Diagram and Slides
+## Architecture
 
-The architecture diagram is in `docs/veritas_architecture.drawio` (open it
-at app.diagrams.net). An exported version of it, along with technical
-notes and references, is in the accompanying Google Slides deck.
+The solution architecture diagram is available in the `docs` folder as `architecture_diagram.png`. It illustrates the end-to-end pipeline architecture, including the ingestion, standardization, validation, storage, configuration, error handling, monitoring, and operational dashboard layers.
