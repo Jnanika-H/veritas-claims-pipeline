@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Veritas Pipeline{% endblock %}</title>
+<style>
+  :root {
+    --ink: #1a2332;
+    --ink-soft: #4a5568;
+    --paper: #f7f8fa;
+    --panel: #ffffff;
+    --line: #e2e6eb;
+    --teal: #0f6e6e;
+    --teal-soft: #e3f1f0;
+    --amber: #b7791f;
+    --amber-soft: #fdf3e0;
+    --red: #b3261e;
+    --red-soft: #fbe9e7;
+    --mono: "SFMono-Regular", "Consolas", "Menlo", monospace;
+    --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+  }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .topbar {
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+  }
+  .topbar .brand {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .topbar .brand small {
+    font-weight: 400;
+    opacity: 0.6;
+    margin-left: 6px;
+    font-size: 12px;
+  }
+  .topbar nav { display: flex; gap: 20px; }
+  .topbar nav a {
+    color: #cfd6e0;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .topbar nav a:hover { color: #fff; text-decoration: none; }
+  .topbar nav a.active { color: #fff; border-bottom: 2px solid var(--teal); padding-bottom: 4px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px; }
+
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 28px 0 12px; color: var(--ink-soft); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .subtitle { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+
+  .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .stat-card .label { font-size: 12px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.03em; }
+  .stat-card .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .stat-card.warn .value { color: var(--amber); }
+  .stat-card.danger .value { color: var(--red); }
+  .stat-card.ok .value { color: var(--teal); }
+
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  th, td { padding: 9px 12px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--line); }
+  th { background: #fafbfc; color: var(--ink-soft); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.03em; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfc; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.02em; }
+  .badge.outlier { background: var(--red-soft); color: var(--red); }
+  .badge.above, .badge.below { background: var(--amber-soft); color: var(--amber); }
+  .badge.invalid { background: #ececec; color: #555; }
+  .badge.within { background: var(--teal-soft); color: var(--teal); }
+
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filters a {
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: var(--panel);
+  }
+  .filters a.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .filters a:hover { text-decoration: none; border-color: var(--teal); }
+
+  .mono { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+
+  .search-box { display: flex; gap: 8px; margin-bottom: 20px; }
+  .search-box input {
+    flex: 1;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .search-box button {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .field-grid { display: grid; grid-template-columns: 200px 1fr; gap: 0; }
+  .field-grid .k { padding: 8px 0; color: var(--ink-soft); font-size: 12px; border-bottom: 1px solid var(--line); }
+  .field-grid .v { padding: 8px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+
+  .empty { padding: 40px; text-align: center; color: var(--ink-soft); font-size: 13px; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">VERITAS CLAIMS <small>Standardisation Pipeline / Ops Console</small></div>
+    <nav>
+      <a href="/" class="{% if request.path == '/' %}active{% endif %}">Dashboard</a>
+      <a href="/flagged" class="{% if request.path == '/flagged' %}active{% endif %}">Flagged Queue</a>
+      <a href="/clinics" class="{% if request.path == '/clinics' %}active{% endif %}">Clinic Stats</a>
+      <a href="/search" class="{% if request.path == '/search' %}active{% endif %}">Record Search</a>
+    </nav>
+  </div>
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

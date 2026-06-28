@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Clinic Stats - Veritas Pipeline{% endblock %}
+{% block content %}
+
+<h1>Clinic-Level Data Quality</h1>
+<p class="subtitle">
+  Grouped by source file as a stand-in for clinic identity, since the sample data does not carry an explicit clinic ID
+  (see Assumptions doc — in production this groups by a real clinic_id column instead).
+</p>
+
+<table>
+  <tr>
+    <th>Source</th>
+    <th>Total Rows</th>
+    <th>Invalid</th>
+    <th>Outliers</th>
+    <th>Unresolved Names</th>
+    <th>Data Quality</th>
+  </tr>
+  {% for row in rows %}
+  {% set raw_quality = 100 - ((row.invalid_count + row.unresolved_names) / row.total_rows * 100 if row.total_rows else 0) %}
+  {% set quality = 0 if raw_quality < 0 else (100 if raw_quality > 100 else raw_quality) %}
+  <tr>
+    <td class="mono">{{ row.file_gcs_path }}</td>
+    <td>{{ row.total_rows }}</td>
+    <td>{{ row.invalid_count }}</td>
+    <td>{{ row.outlier_count }}</td>
+    <td>{{ row.unresolved_names }}</td>
+    <td>
+      {% if quality >= 90 %}<span class="badge within">{{ "%.0f"|format(quality) }}%</span>
+      {% elif quality >= 70 %}<span class="badge above">{{ "%.0f"|format(quality) }}%</span>
+      {% else %}<span class="badge outlier">{{ "%.0f"|format(quality) }}%</span>{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Veritas Pipeline{% endblock %}
+{% block content %}
+
+<h1>Pipeline Run Summary</h1>
+<p class="subtitle">Snapshot of the most recent ingestion run, read directly from the standardisation database.</p>
+
+<div class="grid-stats">
+  <div class="stat-card">
+    <div class="label">Files Processed</div>
+    <div class="value">{{ total_files }}</div>
+  </div>
+  <div class="stat-card ok">
+    <div class="label">Rows Standardised</div>
+    <div class="value">{{ total_rows }}</div>
+  </div>
+  <div class="stat-card danger">
+    <div class="label">Files Failed to Parse</div>
+    <div class="value">{{ failed_files }}</div>
+  </div>
+  <div class="stat-card warn">
+    <div class="label">Duplicate Files Caught</div>
+    <div class="value">{{ duplicate_files }}</div>
+  </div>
+  <div class="stat-card warn">
+    <div class="label">Records Flagged</div>
+    <div class="value">{{ flagged_count }}</div>
+  </div>
+</div>
+
+<h2>Result Classification (Lab Tests)</h2>
+<table>
+  <tr><th>Classification</th><th>Count</th></tr>
+  {% for row in analytics_breakdown %}
+  <tr>
+    <td>
+      {% if row.test_analytics == 'OUTLIER' %}<span class="badge outlier">OUTLIER</span>
+      {% elif row.test_analytics in ('ABOVE RANGE', 'BELOW RANGE') %}<span class="badge above">{{ row.test_analytics }}</span>
+      {% elif row.test_analytics == 'INVALID' %}<span class="badge invalid">INVALID</span>
+      {% elif row.test_analytics == 'WITHIN RANGE' %}<span class="badge within">WITHIN RANGE</span>
+      {% else %}<span class="mono">(not numeric / not applicable)</span>{% endif %}
+    </td>
+    <td>{{ row.cnt }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>Records by Type</h2>
+<table>
+  <tr><th>Record Type</th><th>Count</th></tr>
+  {% for row in record_type_breakdown %}
+  <tr><td class="mono">{{ row.record_type }}</td><td>{{ row.cnt }}</td></tr>
+  {% endfor %}
+</table>
+
+{% if unresolved_names %}
+<h2>Unresolved Test Names (need dictionary review)</h2>
+<table>
+  <tr><th>Raw Test Name</th></tr>
+  {% for row in unresolved_names %}
+  <tr><td class="mono">{{ row.test_name_original }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<h2>Unresolved Test Names (need dictionary review)</h2>
+<div class="empty">None — every test name in the current data resolved to a canonical name or a known non-lab term.</div>
+{% endif %}
+
+{% endblock %}

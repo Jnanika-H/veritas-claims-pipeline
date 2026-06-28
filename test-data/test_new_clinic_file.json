@@ -1,0 +1,43 @@
+{
+  "traceId": "test-trace-001",
+  "data": {
+    "documentId": "DOC_TEST_NEW_CLINIC_001",
+    "correlationId": "test-corr-001",
+    "metaDetails": [
+      {"key": "source_system", "value": "TestClinicXYZ"},
+      {"key": "claim_no", "value": "CLAIM-TEST-001"}
+    ],
+    "responseDetails": [
+      {
+        "classifier": "lab_report",
+        "data": {
+          "basic_info": {
+            "uhid": "UHID-TEST-001",
+            "patient_name": "[PATIENT NAME REDACTED]",
+            "age": "29Y0M0D",
+            "gender": "F",
+            "lab_or_hospital_name": "Test Clinic XYZ",
+            "bill_date": "15-06-2026",
+            "reports_date": "15-06-2026"
+          },
+          "report_details": [
+            {
+              "test_name": "Hemglobin",
+              "result": "13.2",
+              "unit": "g/dL",
+              "range": "12.0-17.5",
+              "page_no": "1"
+            },
+            {
+              "test_name": "Total WBC Count",
+              "result": "7500 cells/cu.mm",
+              "unit": "cells/cu.mm",
+              "range": "4000-11000",
+              "page_no": "1"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Flagged Queue - Veritas Pipeline{% endblock %}
+{% block content %}
+
+<h1>Flagged Records Review Queue</h1>
+<p class="subtitle">Records that need human attention: outliers, out-of-range values, and invalid/contradictory data.</p>
+
+<div class="filters">
+  <a href="/flagged?type=ALL" class="{% if current_filter == 'ALL' %}active{% endif %}">All</a>
+  <a href="/flagged?type=OUTLIER" class="{% if current_filter == 'OUTLIER' %}active{% endif %}">Outliers</a>
+  <a href="/flagged?type=ABOVE RANGE" class="{% if current_filter == 'ABOVE RANGE' %}active{% endif %}">Above Range</a>
+  <a href="/flagged?type=BELOW RANGE" class="{% if current_filter == 'BELOW RANGE' %}active{% endif %}">Below Range</a>
+  <a href="/flagged?type=INVALID" class="{% if current_filter == 'INVALID' %}active{% endif %}">Invalid</a>
+</div>
+
+{% if rows %}
+<table>
+  <tr>
+    <th>Flag</th>
+    <th>Test (canonical)</th>
+    <th>Test (original)</th>
+    <th>Result</th>
+    <th>Range</th>
+    <th>Match Method</th>
+    <th>Source File</th>
+    <th></th>
+  </tr>
+  {% for row in rows %}
+  <tr>
+    <td>
+      {% if row.test_analytics == 'OUTLIER' %}<span class="badge outlier">OUTLIER</span>
+      {% elif row.test_analytics in ('ABOVE RANGE', 'BELOW RANGE') %}<span class="badge above">{{ row.test_analytics }}</span>
+      {% else %}<span class="badge invalid">INVALID</span>{% endif %}
+    </td>
+    <td>{{ row.test_name_canonical or '—' }}</td>
+    <td class="mono">{{ row.test_name_original or '—' }}</td>
+    <td>
+      {% if row.result_value is not none %}{{ row.result_value }} {{ row.unit_canonical or '' }}
+      {% else %}{{ row.result_text or '—' }}{% endif %}
+    </td>
+    <td class="mono">
+      {% if row.range_low is not none or row.range_high is not none %}
+        {{ row.range_low if row.range_low is not none else '?' }} – {{ row.range_high if row.range_high is not none else '?' }}
+      {% else %}—{% endif %}
+    </td>
+    <td class="mono">{{ row.normalization_method }} ({{ row.normalization_confidence }})</td>
+    <td class="mono">{{ row.file_gcs_path }}</td>
+    <td><a href="/record/{{ row.id }}">inspect →</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="empty">No flagged records for this filter.</div>
+{% endif %}
+
+{% endblock %}

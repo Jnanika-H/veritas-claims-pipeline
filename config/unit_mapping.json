@@ -1,0 +1,40 @@
+{
+  "_comment": "Maps unit variants seen in raw data to a canonical unit + a multiply factor to convert the VALUE into that canonical unit. e.g. if result is in mil/cu.cm but canonical unit is mil/cu.mm, multiply by the factor given. factor 1.0 means units are already equivalent (just spelled/cased differently).",
+
+  "cells/cu.mm": {"canonical_unit": "cells/cu.mm", "factor": 1.0},
+  "cell/cu.mm": {"canonical_unit": "cells/cu.mm", "factor": 1.0},
+
+  "mil/cu.mm": {"canonical_unit": "mil/cu.mm", "factor": 1.0},
+  "mil/cu.cm": {"canonical_unit": "mil/cu.mm", "factor": 0.001},
+
+  "g/dL": {"canonical_unit": "g/dL", "factor": 1.0},
+  "gm/dL": {"canonical_unit": "g/dL", "factor": 1.0},
+  "gm/dl": {"canonical_unit": "g/dL", "factor": 1.0},
+  "g/dl": {"canonical_unit": "g/dL", "factor": 1.0},
+
+  "mg/dL": {"canonical_unit": "mg/dL", "factor": 1.0},
+  "mg/dl": {"canonical_unit": "mg/dL", "factor": 1.0},
+
+  "mmol/L": {"canonical_unit": "mmol/L", "factor": 1.0},
+  "mmol/l": {"canonical_unit": "mmol/L", "factor": 1.0},
+
+  "U/L": {"canonical_unit": "U/L", "factor": 1.0},
+  "u/l": {"canonical_unit": "U/L", "factor": 1.0},
+  "IU/L": {"canonical_unit": "U/L", "factor": 1.0},
+
+  "%": {"canonical_unit": "%", "factor": 1.0},
+
+  "FL": {"canonical_unit": "fL", "factor": 1.0},
+  "fL": {"canonical_unit": "fL", "factor": 1.0},
+  "fl": {"canonical_unit": "fL", "factor": 1.0},
+
+  "ng/mL": {"canonical_unit": "ng/mL", "factor": 1.0},
+  "ng/ml": {"canonical_unit": "ng/mL", "factor": 1.0},
+
+  "mg/L": {"canonical_unit": "mg/L", "factor": 1.0},
+
+  "mL/min/1.73m2": {"canonical_unit": "mL/min/1.73m2", "factor": 1.0},
+
+  "pg": {"canonical_unit": "pg", "factor": 1.0},
+  "ratio": {"canonical_unit": "ratio", "factor": 1.0}
+}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Search - Veritas Pipeline{% endblock %}
+{% block content %}
+
+<h1>Record Search</h1>
+<p class="subtitle">Search by document ID, UHID, or patient name (where not redacted).</p>
+
+<form class="search-box" action="/search" method="get">
+  <input type="text" name="q" placeholder="Search document_id, uhid, or patient_name..." value="{{ query }}">
+  <button type="submit">Search</button>
+</form>
+
+{% if query %}
+  {% if rows %}
+  <table>
+    <tr><th>Type</th><th>Test/Field</th><th>Document ID</th><th>UHID</th><th></th></tr>
+    {% for row in rows %}
+    <tr>
+      <td class="mono">{{ row.record_type }}</td>
+      <td>{{ row.test_name_canonical or '—' }}</td>
+      <td class="mono">{{ row.document_id or '—' }}</td>
+      <td class="mono">{{ row.uhid or '—' }}</td>
+      <td><a href="/record/{{ row.id }}">inspect →</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">No records matched "{{ query }}".</div>
+  {% endif %}
+{% endif %}
+
+{% endblock %}

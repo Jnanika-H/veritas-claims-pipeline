@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Record Inspector - Veritas Pipeline{% endblock %}
+{% block content %}
+
+<h1>Record Inspector</h1>
+<p class="subtitle"><a href="javascript:history.back()">← back</a></p>
+
+<div class="field-grid">
+  {% for key, value in row.items() %}
+    {% if value is not none and value != '' %}
+    <div class="k">{{ key }}</div>
+    <div class="v {% if key in ('id', 'document_id', 'trace_id', 'correlation_id') %}mono{% endif %}">{{ value }}</div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}

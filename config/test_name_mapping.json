@@ -1,0 +1,120 @@
+{
+  "_comment": "Maps any known variant/misspelling of a test name to one canonical name. Add new clinics' weird spellings here -- no code change needed. Anything NOT in this list falls back to fuzzy matching in standardisation/test_name_normaliser.py. This dictionary was expanded after reviewing the full 'Unresolved Test Names' list produced by running the pipeline against all 5 sample files -- see docs/ASSUMPTIONS.md for which remaining names are intentionally left unresolved (vitals, symptoms, panel headers, placeholder junk) vs genuinely new test variants.",
+
+  "HAEMOGLOBIN": ["HAEMOGLOBIN", "Haemoglobin", "haemoglobin", "Hb", "HGB", "aemoglobin", "HEMOGLOBIN", "Hemoglobin", "Haemoglobin (whole blood/photometric method)"],
+
+  "WHITE BLOOD CELL COUNT": ["TOTAL WBC COUNT", "Total WBC Count", "WBC COUNT", "tal WBC Count", "WBC", "Total Leukocyte Count", "TLC", "CORRECTED TLC", "Total Leucocyte Count (TLC) (whole blood/impedence method)"],
+
+  "SERUM CREATININE": ["CREATININE, SERUM", "SERUM CREATININE", "Serum Creatinine", "CREATININE", "Creatinine", "KFT - sr creatinine - 0.3"],
+
+  "SODIUM": ["Na+", "SODIUM", "Sodium", "Sodium (Na+)", "Na + (127)"],
+
+  "POTASSIUM": ["K+", "POTASSIUM", "Potassium"],
+
+  "RED BLOOD CELL COUNT": ["RBC", "RBC COUNT", "Red Blood Cell Count", "Red Blood Cell Count (whole blood/ impedenco method)"],
+
+  "PLATELET COUNT": ["PLATELET COUNT", "Platelet Count", "atelet Count", "PLATELETS"],
+
+  "ALBUMIN": ["ALBUMIN", "ALBUMIN, SERUM", "Albumin"],
+
+  "HEMATOCRIT": ["HAEMATOCRIT", "Haematocrit (PCV)", "HEMATOCRIT", "HCT", "ematocrit HCT", "PCV", "Packed Cell Volume (PCV)", "Packed Cell Volume (PCV) (whole blood/ impedenco method)"],
+
+  "PROCALCITONIN": ["PROCALCITONIN", "PROCALCITONIN (PCT)"],
+
+  "C-REACTIVE PROTEIN": ["C-REACTIVE PROTEIN (CRP)", "CRP", "CRP-QUANTITATIVE"],
+
+  "ALANINE AMINOTRANSFERASE": ["ALANINE AMINOTRANSFERASE", "ALT (SGPT)", "ALT", "SGPT", "Alanine Transaminase (ALT)"],
+
+  "ASPARTATE AMINOTRANSFERASE": ["ASPARTATE AMINOTRANSFERASE", "AST (SGOT)", "AST", "SGOT", "Aspartate Transaminase (SGOT, HAST)", "ASPARTATE AMINOTRANSFERASE(AST/SGOT)"],
+
+  "URIC ACID": ["URIC ACID", "URIC ACID, SERUM"],
+
+  "CALCIUM": ["CALCIUM", "Ca2+ (Calcium)", "Ca2+", "Serum Calcium"],
+
+  "ESTIMATED GLOMERULAR FILTRATION RATE": ["FILTRATION RATE", "eGFR - ESTIMATED GLOMERULAR FILTRATION RATE", "eGFR"],
+
+  "UREA NITROGEN": ["BLOOD UREA NITROGEN", "BUN", "Blood Urea"],
+
+  "RBC INDICES": ["RBC INDICES", "BC INDICES"],
+
+  "MEAN CORPUSCULAR VOLUME": ["MCV", "lean Corp Volume MCV", "Mean Corp Volume MCV", "Mean Cell Volume (MCV) (whole blood/calculalod)"],
+
+  "MEAN CORPUSCULAR HB CONCENTRATION": ["MCHC", "lean Corp Hb Conc MCHC", "Mean Corp Hb Conc MCHC", "MCHC (whole blood/calculated)"],
+
+  "MEAN CORPUSCULAR HAEMOGLOBIN": ["MCH", "MCH (whole blood/calculated)"],
+
+  "RDW-CV": ["RDW-CV", "DW-CV", "R.D.W", "RDW - CV (whole blood/impedence method)"],
+  "RDW-SD": ["RDW-SD", "DW-SD"],
+
+  "MEAN PLATELET VOLUME": ["MPV", "MPV (Mean Platelet Volume)"],
+
+  "NEUTROPHILS": ["NEUTROPHILS", "eutrophils", "Neutrophils"],
+  "LYMPHOCYTES": ["LYMPHOCYTES", "mphocytes", "Lymphocytes"],
+  "EOSINOPHILS": ["EOSINOPHILS", "sinophils", "Eosinophils"],
+  "MONOCYTES": ["MONOCYTES", "onocytes", "Monocytes"],
+  "BASOPHILS": ["BASOPHILS", "sophils", "Basophils"],
+
+  "GLOBULIN": ["GLOBULIN", "Globulin", "Globulin (Calculated)"],
+  "ALKALINE PHOSPHATASE": ["ALKALINE PHOSPHATASE", "ALP"],
+  "UREA": ["UREA"],
+  "AST/ALT RATIO": ["AST (SGOT) / ALT (SGPT) RATIO (DE RITIS)", "DE RITIS RATIO"],
+  "ALBUMIN/GLOBULIN RATIO": ["Albumin/Globulin Ratio", "Albumin/Globulin Ratio (Calculated)"],
+
+  "TOTAL PROTEIN": ["PROTEIN, TOTAL", "PROTEIN,TOTAL", "Total Protein", "Total protein"],
+  "BILIRUBIN TOTAL": ["BILIRUBIN, TOTAL", "TOTAL BILIRUBIN"],
+  "BILIRUBIN DIRECT": ["BILIRUBIN CONJUGATED (DIRECT)", "BILIRUBIN CONJUGATED(DIRECT)", "BILIRUBIN(automated multistrips,fouchets method)"],
+  "BILIRUBIN INDIRECT": ["BILIRUBIN (INDIRECT)", "BILIRUBIN(INDIRECT)"],
+  "CHLORIDE": ["CHLORIDE", "Chloride (CI-)"],
+  "AMYLASE": ["AMYLASE"],
+  "LIPASE": ["LIPASE,SERUM", "LIPASE, SERUM"],
+  "GAMMA GLUTAMYL TRANSFERASE": ["GGT (Gamma Glutamyl Transpeptidase)", "GGT"],
+  "PHOSPHORUS": ["PHOSPHORUS, INORGANIC", "Phosphorus Serum"],
+  "RANDOM BLOOD SUGAR": ["RBS", "GLUCOSE"],
+
+  "WIDAL TEST": ["WIDAL TEST", "WIDAL TEST (SLIDE METHOD)"],
+  "DENGUE NS1": ["DENGUE NS 1", "DENGUE NS1"],
+  "TYPHI DOT IGG IGM": ["TYPHI DOT IGG & IGM", "TYPHI DOT IGG IGM"],
+  "SALMONELLA TYPHI H": ["SALMONELLA TYPHI 'H' , SERUM", "SALMONELLA TYPHI O` , SERUM"],
+  "SALMONELLA PARATYPHI A H": ["S.PARATYPHI A 'H' , SERUM"],
+  "SALMONELLA PARATYPHI B H": ["S.PARATYPHI B 'H' , SERUM"],
+  "MALARIA VIVAX ANTIGEN": ["MALARIA VIVAX ANTIGEN , WHOLE BLOOD EDTA"],
+  "MALARIA FALCIPARUM ANTIGEN": ["MALARIA FALCIPARUM ANTIGEN , WHOLE BLOOD EDTA"],
+
+  "URINE SPECIFIC GRAVITY": ["SP. GRAVITY", "SPECIFIC GRAVITY(automated multistrips.colour reaction/Pka change)"],
+  "URINE PH": ["pH", "pH(automated multistrips double indicator method)"],
+  "URINE GLUCOSE": ["GLUCOSE(automated multistrips.(enzyme 0 reaction) benedicts method"],
+  "URINE PROTEIN": ["PROTEIN (ALBUMIN)automated(multistrips)protein error of pH).sulphosalicylic acid method"],
+  "URINE KETONES": ["KETONE BODIES(automated (multistrips.rotheras method)", "URINE KETONES (RANDOM)"],
+  "URINE BLOOD": ["BLOOD(automated multistrips ,bencidine method)"],
+  "URINE BILIRUBIN": ["URINE BILIRUBIN"],
+  "URINE UROBILINOGEN": ["UROBILINOGEN(automated multistrips,ehrlichs aldehyde method)"],
+  "URINE NITRITE": ["NITRITE"],
+  "URINE LEUCOCYTE ESTERASE": ["LEUCOCYTE ESTERASE"],
+  "URINE COLOUR": ["COLOUR(visual observation)"],
+  "URINE APPEARANCE": ["TRANSPARENCY (APPEARANCE)( visual observation)"],
+  "URINE VOLUME": ["VOLUME(visual observation)"],
+  "URINE PUS CELLS": ["PUS CELLS(light microscopy)/hpf", "Pus Cells"],
+  "URINE RED BLOOD CELLS": ["RED BLOOD CELLS(light microscopy)"],
+  "URINE EPITHELIAL CELLS": ["EPITHELIAL CELLS(light microscopy)", "EPITHELIAL CELLS"],
+  "URINE CASTS": ["CASTS(light microscopy)"],
+  "URINE CRYSTALS": ["CRYSTALS(light microscopy)", "CRYSTALS"],
+
+  "_non_lab_terms_comment": "The following are NOT lab test results -- they are vitals, symptoms, panel/section headers, free-text comments, or placeholder junk seen in the sample data. They are intentionally excluded from the test name dictionary so they correctly remain 'unresolved' rather than being force-mapped to a fake canonical test name. See docs/ASSUMPTIONS.md.",
+  "_non_lab_terms": [
+    "BP", "Temp", "Temp.", "Pulse", "SPO2", "SpO2", "Resp. Rate", "Weight", "Heart Rate\u00ae",
+    "Fever", "Headache", "Vomiting", "Pain abdomen", "Generalized weakness", "Reduced oral intake",
+    "Chest", "CVS", "P/A", "Diet", "Comment", "DIAGNOSTICS", "Total Intake", "Total Output",
+    "Supplement 0,Lt.", "ET", "BE", "LCR", "9-11",
+    "BIOCHEMICAL EXAMINATION", "COMPLETE BLOOD COUNT (CBC) , WHOLE BLOOD EDTA",
+    "CBC (Complete Blood Count)* (Specimen : EDTA)", "COMPLETE URINE EXAMINATION (CUE)",
+    "DIFFERENTIAL LEUCOCYTIC COUNT (DLC)", "LIVER FUNCTION TEST(LFT)", "LIVER FUNCTION TEST (LFT) , SERUM",
+    "LIVER FUNCTION TEST(LFT),SERUM", "LFT (Liver Function Test)", "RENAL PROFILE/KIDNEY FUNCTION TEST (RFT/KFT), SERUM",
+    "CENTRIFUGED SEDIMENT WET MOUNT AND MICROSCOPY", "CULTURE AND SENSITIVITY - AEROBIC (BLOOD)",
+    "PERIPHERAL SMEAR FOR MALARIAL PARASITE (MP) , WHOLE BLOOD EDTA", "Urine routine and microscopic examination",
+    "urine R/M", "ULTRASOUND WHOLE ABDOMEN", "USG WHOLE ABDOMEN", "USG W/A",
+    "Neutrophil lymphocyte ratio (NLR)", "Serum Bilirubin (Total, Direct & Indirect)",
+    "LFT ( SGOT - 38, SGPT -14, ALP - 127)", "OTHERS(light microscopy", "latelet Indices",
+    "lac/cmm", "NEGATIVE", "ABSENT", "test_name"
+  ]
+}
+
